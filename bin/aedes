@@ -15,9 +15,8 @@ ______   ________  _______   ________   ______
 
 console.log(ascii)
 
-require('../lib/cli')(process.argv, function (err) {
-  if (err) {
+require('../lib/cli')(process.argv)
+  .catch((err) => {
     console.log(err)
     process.exit(1)
-  }
-})
+  })
