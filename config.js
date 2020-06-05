@@ -13,12 +13,12 @@ module.exports = {
       url: 'mongodb://127.0.0.1/aedes'
     }
   },
-  //   mq: {
-  //     name: 'mongodb',
-  //     options: {
-  //       url: 'mongodb://127.0.0.1/aedes'
-  //     }
-  //   },
+  mq: {
+    name: 'mongodb',
+    options: {
+      url: 'mongodb://127.0.0.1/aedes'
+    }
+  },
   //   persistence: {
   //     name: 'redis',
   //     options: {}
@@ -26,7 +26,7 @@ module.exports = {
   //   mq: {
   //     name: 'redis',
   //     options: {}
-  //   }
+  //   },
   key: null,
   cert: null,
   rejectUnauthorized: true,
