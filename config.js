@@ -6,6 +6,7 @@ module.exports = {
   wssPort: 4000,
   tlsPort: 8883,
   brokerId: 'aedes-cli',
+  credentials: './credentials.json',
   persistence: {
     name: 'mongodb',
     options: {
