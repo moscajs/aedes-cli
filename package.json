@@ -7,8 +7,9 @@
     "aedes": "./bin/aedes"
   },
   "scripts": {
-    "test": "npm run lint:standard",
+    "test": "npm run lint:standard && npm run test:ci",
     "lint:standard": "standard --verbose | snazzy",
+    "test:ci": "tap test/*.test.js",
     "release": "read -p 'GITHUB_TOKEN: ' GITHUB_TOKEN && export GITHUB_TOKEN=$GITHUB_TOKEN && release-it --disable-metrics"
   },
   "release-it": {
@@ -45,9 +46,11 @@
   },
   "homepage": "https://github.com/moscajs/aedes-cli#readme",
   "devDependencies": {
+    "leaked-handles": "^5.2.0",
     "release-it": "^13.6.2",
     "snazzy": "^8.0.0",
-    "standard": "^14.3.4"
+    "standard": "^14.3.4",
+    "tap": "^14.10.7"
   },
   "dependencies": {
     "aedes": "^0.42.1",
