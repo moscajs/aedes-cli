@@ -52,7 +52,7 @@ test('start multiple servers', async function (t) {
   }
 })
 
-test('should add/remove user from credentials', async function (t) {
+test('add/remove user from credentials', async function (t) {
   t.plan(2)
 
   var username = 'aedes'
@@ -79,4 +79,17 @@ test('should add/remove user from credentials', async function (t) {
   t.equal(user, undefined, 'user has been successfully removed')
 
   await unlink(credentialsFile)
+})
+
+async function testPersistence (t, config) {
+  var setup = await start(['--config', config])
+
+  await stop(setup)
+}
+
+test('mongo/redis persistences from config', async function (t) {
+  await testPersistence(t, join(__dirname, 'mongoConfig.js'))
+  await testPersistence(t, join(__dirname, 'redisConfig.js'))
+
+  t.end()
 })

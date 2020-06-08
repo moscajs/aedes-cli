@@ -23,6 +23,10 @@ function close (server) {
 
 async function stop (setup) {
   await close(setup.broker)
+
+  setup.broker.persistence.destroy()
+  // setup.broker.mq.close()
+
   for (const server of setup.servers) {
     await close(server)
   }
