@@ -51,6 +51,7 @@ Options:
   --tls-port <n>                   the TLS port to listen to
   --ws-port <n>                    start an mqtt-over-websocket server on the specified port
   --wss-port <n>                   start an mqtt-over-secure-websocket server on the specified port
+  --disable-stats                  disable the publishing of stats under $SYS (default: true)
   --broker-id <id>                 the id of the broker in the $SYS/<id> namespace
   -c, --config <c>                 the config file to use (override every other option)
   -v, --verbose                    set the log level to INFO
