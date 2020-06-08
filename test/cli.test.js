@@ -88,8 +88,8 @@ async function testPersistence (t, config) {
 }
 
 test('mongo/redis persistences from config', async function (t) {
-  await testPersistence(t, join(__dirname, 'mongoConfig.js'))
-  await testPersistence(t, join(__dirname, 'redisConfig.js'))
+  await testPersistence(t, join(__dirname, 'config/mongoConfig.js'))
+  await testPersistence(t, join(__dirname, 'config/redisConfig.js'))
 
   t.end()
 })
