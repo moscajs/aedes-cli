@@ -1,6 +1,6 @@
 const { test } = require('tap')
 const { start, stop } = require('./helper')
-const { readFile, writeFile, unlink } = require('fs').promises
+const { readFile, unlink } = require('fs').promises
 
 const defaults = require('../config')
 
