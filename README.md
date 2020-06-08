@@ -81,18 +81,18 @@ module.exports = {
   tlsPort: 8883,
   brokerId: 'aedes-cli',
   credentials: './credentials.json',
-    persistence: {
-      name: 'mongodb',
-      options: {
-        url: 'mongodb://127.0.0.1/aedes'
-      }
-    },
-    mq: {
-      name: 'mongodb',
-      options: {
-        url: 'mongodb://127.0.0.1/aedes'
-      }
-    },
+  persistence: {
+    name: 'mongodb',
+    options: {
+      url: 'mongodb://127.0.0.1/aedes'
+    }
+  },
+  mq: {
+    name: 'mongodb',
+    options: {
+      url: 'mongodb://127.0.0.1/aedes'
+    }
+  },
   key: null,
   cert: null,
   rejectUnauthorized: true,
