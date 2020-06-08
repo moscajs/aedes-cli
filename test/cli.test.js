@@ -1,9 +1,12 @@
 const { test } = require('tap')
 const { start, stop } = require('./helper')
+const { readFile, unlink } = require('fs').promises
 
 const defaults = require('../config')
 
 const { join } = require('path')
+
+const credentialsFile = join(__dirname, '/credentials.json')
 
 require('leaked-handles')
 
@@ -47,4 +50,33 @@ test('start multiple servers', async function (t) {
     t.equal(info.address, defaults.host, 'should have default host')
     t.equal(info.port, servers[server._protocol], 'should have default port')
   }
+})
+
+test('should add/remove user from credentials', async function (t) {
+  t.plan(2)
+
+  var username = 'aedes'
+  var password = 'rocks'
+
+  var args = ['--credentials', credentialsFile, 'adduser', username, password]
+
+  await start(args)
+
+  var data = JSON.parse(await readFile(credentialsFile))
+
+  var user = data[username]
+
+  t.equal(!!user, true, 'user has been successfully created')
+
+  args = ['--credentials', credentialsFile, 'rmuser', username]
+
+  await start(args)
+
+  data = JSON.parse(await readFile(credentialsFile))
+
+  user = data[username]
+
+  t.equal(user, undefined, 'user has been successfully removed')
+
+  await unlink(credentialsFile)
 })
