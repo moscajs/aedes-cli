@@ -14,10 +14,19 @@ npm install aedes-cli -g
 
 Here you can see the options accepted by the command line tool:
 
-```
+```bash
 $ aedes --help
+______   ________  _______   ________   ______  
+/      \ |        \|       \ |        \ /      \
+|  $$$$$$\| $$$$$$$$| $$$$$$$\| $$$$$$$$|  $$$$$$\
+| $$__| $$| $$__    | $$  | $$| $$__    | $$___\$$
+| $$    $$| $$  \   | $$  | $$| $$  \    \$$    \
+| $$$$$$$$| $$$$$   | $$  | $$| $$$$$    _\$$$$$$\
+| $$  | $$| $$_____ | $$__/ $$| $$_____ |  \__| $$
+| $$  | $$| $$     \| $$    $$| $$     \ \$$    $$
+\$$   \$$ \$$$$$$$$ \$$$$$$$  \$$$$$$$$  \$$$$$$
 
-  Usage: aedes [options] [command]
+Usage: aedes [options] [command]
 
 Options:
   -V, --version                    output the version number
@@ -27,6 +36,11 @@ Options:
   --credentials <file>             the file containing the credentials (default: "./credentials.json")
   --authorize-publish <pattern>    the pattern for publishing to topics for the added user
   --authorize-subscribe <pattern>  the pattern for subscribing to topics for the added user
+  --concurrency <n>                broker maximum number of concurrent messages delivered by mqemitter
+  --queueLimit <n>                 broker maximum number of queued messages before client session is established
+  --maxClientsIdLength <n>         broker option to override MQTT 3.1.0 clients Id length limit
+  --heartbeatInterval <n>          interval in millisconds at which broker beats its health signal in $SYS/<broker.id>/heartbeat
+  --connectTimeout <n>             maximum waiting time in milliseconds waiting for a CONNECT packet.
   --key <file>                     the server's private key
   --cert <file>                    the certificate issued to the server
   --reject-unauthorized            reject clients using self signed certificates (default: true)
