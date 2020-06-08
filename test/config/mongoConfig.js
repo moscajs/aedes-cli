@@ -32,14 +32,6 @@ module.exports = {
       url: 'mongodb://127.0.0.1/aedes'
     }
   },
-  //   persistence: {
-  //     name: 'redis',
-  //     options: {}
-  //   },
-  //   mq: {
-  //     name: 'redis',
-  //     options: {}
-  //   },
   // LOGGER
   verbose: false,
   veryVerbose: false,

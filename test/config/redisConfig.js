@@ -20,18 +20,6 @@ module.exports = {
   connectTimeout: 30000,
   disableStats: true,
   // PERSISTENCES
-  // persistence: {
-  //   name: 'mongodb',
-  //   options: {
-  //     url: 'mongodb://127.0.0.1/aedes'
-  //   }
-  // },
-  // mq: {
-  //   name: 'mongodb',
-  //   options: {
-  //     url: 'mongodb://127.0.0.1/aedes'
-  //   }
-  // },
   persistence: {
     name: 'redis',
     options: {}
