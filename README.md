@@ -1,6 +1,6 @@
 # aedes-cli
 
-[![ci](https://github.com/moscajs/aedes-ci/workflows/ci/badge.svg?branch=master)](https://github.com/moscajs/aedes-ci/actions?query=workflow%3Aci+branch%3Amaster)
+![CI](https://github.com/moscajs/aedes-cli/workflows/CI/badge.svg)
 
 Aedes MQTT broker cli plugin
 
