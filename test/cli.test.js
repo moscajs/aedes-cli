@@ -1,6 +1,6 @@
 const { test } = require('tap')
 const { start, stop } = require('./helper')
-const { readFile, unlink } = require('fs').promises
+const { readFile, writeFile, unlink } = require('fs').promises
 
 const defaults = require('../config')
 
@@ -77,6 +77,33 @@ test('add/remove user from credentials', async function (t) {
   user = data[username]
 
   t.equal(user, undefined, 'user has been successfully removed')
+
+  await unlink(credentialsFile)
+})
+
+test('add/remove user from credentials throws error', async function (t) {
+  t.plan(2)
+
+  var username = 'aedes'
+  var password = 'rocks'
+
+  await writeFile(credentialsFile, '')
+
+  var args = ['--credentials', credentialsFile, 'adduser', username, password]
+
+  try {
+    await start(args)
+  } catch (error) {
+    t.pass('add user throws error')
+  }
+
+  args = ['--credentials', credentialsFile, 'rmuser', username]
+
+  try {
+    await start(args)
+  } catch (error) {
+    t.pass('remove user throws error')
+  }
 
   await unlink(credentialsFile)
 })

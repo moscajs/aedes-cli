@@ -5,3 +5,4 @@ no-jsx: true
 no-flow: true
 coverage: true
 browser: false
+coverage-report: html
