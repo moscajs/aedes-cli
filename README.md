@@ -1,12 +1,14 @@
 # aedes-cli
 
+[![ci](https://github.com/moscajs/aedes-ci/workflows/ci/badge.svg?branch=master)](https://github.com/moscajs/aedes-ci/actions?query=workflow%3Aci+branch%3Amaster)
+
 Aedes MQTT broker cli plugin
 
 ## Install
 
 Install the library using [npm](http://npmjs.org/).
 
-```
+```bash
 npm install aedes-cli -g
 ```
 
@@ -103,7 +105,7 @@ module.exports = {
 Aedes supports user authentication through the use of a specific json file.
 In order to create one run the following command.
 
-```javascript
+```bash
 // add a user
 $ aedes adduser <user> <pass> --credentials ./credentials.json
 
