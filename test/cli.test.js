@@ -7,6 +7,8 @@ const defaults = require('../config')
 const { join } = require('path')
 
 const credentialsFile = join(__dirname, '/credentials.json')
+const certFile = join(__dirname, '/secure/server.cert')
+const keyFile = join(__dirname, '/secure/server.key')
 
 require('leaked-handles')
 
@@ -37,7 +39,7 @@ test('start multiple servers', async function (t) {
     tls: defaults.tlsPort,
     wss: defaults.wssPort
   }
-  var args = ['--protos', Object.keys(servers).join(','), '--cert', join(__dirname, '/secure/server.cert'), '--key', join(__dirname, '/secure/server.key')]
+  var args = ['--protos', Object.keys(servers).join(','), '--cert', certFile, '--key', keyFile]
 
   var setup = await start(args)
 
@@ -87,25 +89,50 @@ test('add/remove user from credentials throws error', async function (t) {
   var username = 'aedes'
   var password = 'rocks'
 
-  await writeFile(credentialsFile, '')
-
-  var args = ['--credentials', credentialsFile, 'adduser', username, password]
+  var args = ['--credentials', '', 'adduser', username, password]
 
   try {
     await start(args)
   } catch (error) {
-    t.pass('add user throws error')
+    console.log(error.message)
+    t.equal(error.message, 'you must specify a valid credential file using --credentials option', 'adduser throws error')
   }
 
-  args = ['--credentials', credentialsFile, 'rmuser', username]
+  args = ['--credentials', '', 'rmuser', username]
 
   try {
     await start(args)
   } catch (error) {
-    t.pass('remove user throws error')
+    t.equal(error.message, 'you must specify a valid credential file using --credentials option', 'rmuser throws error')
+  }
+})
+
+test('key/cert errors', async function (t) {
+  t.plan(3)
+
+  var args = ['--key', keyFile]
+
+  try {
+    await start(args)
+  } catch (error) {
+    t.equal(error.message, 'Must supply both private key and signed certificate to create secure aedes server', 'throws error when cert is missing')
   }
 
-  await unlink(credentialsFile)
+  args = ['--cert', certFile]
+
+  try {
+    await start(args)
+  } catch (error) {
+    t.equal(error.message, 'Must supply both private key and signed certificate to create secure aedes server', 'throws error when key is missing')
+  }
+
+  args = ['--cert', 'not/exists', '--key', 'not/exists']
+
+  try {
+    await start(args)
+  } catch (error) {
+    t.equal(error.message, 'ENOENT: no such file or directory, open \'not/exists\'', 'throws error when key/cert file are missing')
+  }
 })
 
 async function testPersistence (t, config) {
