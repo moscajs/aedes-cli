@@ -5,6 +5,7 @@
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/moscajs/aedes-cli.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/moscajs/aedes-cli/context:javascript)
 [![NPM version](https://img.shields.io/npm/v/aedes-cli.svg?style=flat)](https://www.npmjs.com/aedes-cli)
 [![NPM downloads](https://img.shields.io/npm/dm/aedes-cli.svg?style=flat)](https://www.npmjs.com/aedes-cli)
+[![Known Vulnerabilities](https://snyk.io/test/github/moscajs/aedes-cli/badge.svg?targetFile=package.json)](https://snyk.io/test/github/moscajs/aedes-cli?targetFile=package.json)
 
 [![opencollective](https://opencollective.com/aedes/donate/button.png)](https://opencollective.com/aedes/donate)
 
