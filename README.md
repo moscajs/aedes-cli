@@ -6,6 +6,8 @@
 [![NPM version](https://img.shields.io/npm/v/aedes-cli.svg?style=flat)](https://www.npmjs.com/aedes-cli)
 [![NPM downloads](https://img.shields.io/npm/dm/aedes-cli.svg?style=flat)](https://www.npmjs.com/aedes-cli)
 
+[![opencollective](https://opencollective.com/aedes/donate/button.png)](https://opencollective.com/aedes/donate)
+
 Aedes MQTT broker cli plugin
 
 ## Install
