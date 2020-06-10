@@ -134,16 +134,3 @@ test('key/cert errors', async function (t) {
     t.equal(error.message, 'ENOENT: no such file or directory, open \'not/exists\'', 'throws error when key/cert file are missing')
   }
 })
-
-async function testPersistence (t, config) {
-  var setup = await start(['--config', config])
-
-  await stop(setup)
-}
-
-test('mongo/redis persistences from config', async function (t) {
-  await testPersistence(t, join(__dirname, 'config/mongoConfig.js'))
-  await testPersistence(t, join(__dirname, 'config/redisConfig.js'))
-
-  t.end()
-})
