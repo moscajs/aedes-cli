@@ -3,6 +3,8 @@
 ![CI](https://github.com/moscajs/aedes-cli/workflows/CI/badge.svg)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/moscajs/aedes-cli.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/moscajs/aedes-cli/alerts/)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/moscajs/aedes-cli.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/moscajs/aedes-cli/context:javascript)
+[![NPM version](https://img.shields.io/npm/v/aedes-cli.svg?style=flat)](https://www.npmjs.com/aedes-cli)
+[![NPM downloads](https://img.shields.io/npm/dm/aedes-cli.svg?style=flat)](https://www.npmjs.com/aedes-cli)
 
 Aedes MQTT broker cli plugin
 
