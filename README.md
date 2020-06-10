@@ -6,6 +6,13 @@
 
 Aedes MQTT broker cli plugin
 
+- [aedes-cli](#aedes-cli)
+  - [Install](#install)
+  - [Usage](#usage)
+  - [Docker](#docker)
+  - [Authorization](#authorization)
+  - [Persistence and Emitters](#persistence-and-emitters)
+
 ## Install
 
 Install the library using [npm](http://npmjs.org/).
@@ -102,6 +109,10 @@ module.exports = {
 }
 
 ```
+
+## Docker
+
+In order to use `aedes-cli` with docker just run the command `docker run moscajs/aedes:latest [options]` or use [docker-compose](/docker/docker-compose.yml)
 
 ## Authorization
 

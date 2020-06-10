@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  aedes:
+    container_name: aedes
+    image: moscajs/aedes:latest
+    restart: always
+    stop_signal: SIGINT
+    ports:
+      - '1883:1883'
+      - '3000:3000'
+      - '4000:4000'
+      - '8883:8883'
+  mongo:
+    container_name: mongo
+    logging:
+      driver: none
+    image: mvertes/alpine-mongo
+    volumes:
+      - db-data:/data/db
+    ports:
+      - "27017:27017"
