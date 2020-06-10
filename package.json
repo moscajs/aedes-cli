@@ -1,0 +1,68 @@
+{
+  "name": "aedes-cli",
+  "version": "0.0.1",
+  "description": "Aedes MQTT broker from cli",
+  "main": "index.js",
+  "bin": {
+    "aedes": "./bin/aedes"
+  },
+  "scripts": {
+    "test": "npm run lint:standard && npm run test:ci",
+    "lint:standard": "standard --verbose | snazzy",
+    "test:ci": "tap test/*.test.js",
+    "release": "read -p 'GITHUB_TOKEN: ' GITHUB_TOKEN && export GITHUB_TOKEN=$GITHUB_TOKEN && release-it --disable-metrics"
+  },
+  "release-it": {
+    "github": {
+      "release": true
+    },
+    "git": {
+      "tagName": "v${version}"
+    },
+    "hooks": {
+      "before:init": [
+        "npm run test"
+      ]
+    },
+    "npm": {
+      "publish": true
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moscajs/aedes-cli.git"
+  },
+  "keywords": [
+    "aedes",
+    "mqtt",
+    "broker",
+    "nodejs",
+    "cli"
+  ],
+  "author": "Daniel Lando <daniel.sorridi@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/moscajs/aedes-cli/issues"
+  },
+  "homepage": "https://github.com/moscajs/aedes-cli#readme",
+  "devDependencies": {
+    "leaked-handles": "^5.2.0",
+    "release-it": "^13.6.2",
+    "snazzy": "^8.0.0",
+    "standard": "^14.3.4",
+    "tap": "^14.10.7"
+  },
+  "dependencies": {
+    "aedes": "^0.42.1",
+    "aedes-persistence-mongodb": "^8.0.1",
+    "aedes-persistence-redis": "^7.0.0",
+    "aedes-stats": "^3.0.0",
+    "commander": "^5.1.0",
+    "minimatch": "^3.0.4",
+    "mqemitter-mongodb": "^7.0.2",
+    "mqemitter-redis": "^4.0.3",
+    "pino": "^6.3.2",
+    "pino-pretty": "^4.0.0",
+    "ws": "^7.3.0"
+  }
+}
