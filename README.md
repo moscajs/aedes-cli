@@ -10,7 +10,7 @@
 
 [![opencollective](https://opencollective.com/aedes/donate/button.png)](https://opencollective.com/aedes/donate)
 
-Aedes MQTT broker cli plugin
+[Aedes](https://github.com/moscajs/aedes) MQTT broker CLI plugin
 
 - [aedes-cli](#aedes-cli)
   - [Install](#install)
