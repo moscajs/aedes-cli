@@ -10,7 +10,7 @@
 
 [![opencollective](https://opencollective.com/aedes/donate/button.png)](https://opencollective.com/aedes/donate)
 
-Aedes MQTT broker cli plugin
+[Aedes](https://github.com/moscajs/aedes) MQTT broker CLI plugin
 
 - [aedes-cli](#aedes-cli)
   - [Install](#install)
@@ -118,7 +118,54 @@ module.exports = {
 
 ## Docker
 
-In order to use `aedes-cli` with docker just run the command `docker run moscajs/aedes:latest [options]` or use [docker-compose](/docker/docker-compose.yml)
+`aedes-cli` is available on [Docker-Hub](https://hub.docker.com/repository/docker/moscajs/aedes/general) for `amd64, arm64v8, arm32v6, arm32v7, i386` archs. If you want to use a local `credentials.json` file and/or a custom config file to pass using `--config` option you have to use docker volumes and map the local folder containing those files to a folder inside the container.
+
+Example:
+
+`docker run --rm -it -p 1883:1883 -v $(pwd):/data moscajs/aedes:latest --config /data/myConfig.js`
+
+- `-v $(pwd):/data` will map the local folder from where you are running this command to `/data` folder of the container
+- `--config /data/myConfig.js` will tell aedes to use the configuration file that is in your local folder
+
+[Here](/docker/docker-compose.yml) there is an example with `docker-compose` that runs aedes with `mongodb` as persistence
+
+ ```yml
+ version: '3.7'
+services:
+  aedes:
+    container_name: aedes
+    image: moscajs/aedes:latest
+    restart: always
+    stop_signal: SIGINT
+    networks:
+      - mqtt
+    command: --config /data/mongodbConfig.js # add here the options to pass to aedes
+    volumes:
+      - ./:/data # map the local folder to aedes
+    ports:
+      - '1883:1883'
+      - '3000:3000'
+      - '4000:4000'
+      - '8883:8883'
+  mongo:
+    container_name: mongo
+    networks:
+      - mqtt
+    logging:
+      driver: none
+    image: mvertes/alpine-mongo
+    volumes:
+      - db-data:/data/db
+    ports:
+      - "27017:27017"
+volumes:
+  db-data:
+    name: db-data
+networks:
+  mqtt:
+ ```
+
+ When using persistences with docker-compose file remember that the database url will be the name of the service in docker-compose, in the mongo example it will be: `mongodb://mongo/dbName`.
 
 ## Authorization
 

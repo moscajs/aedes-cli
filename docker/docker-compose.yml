@@ -5,6 +5,11 @@ services:
     image: moscajs/aedes:latest
     restart: always
     stop_signal: SIGINT
+    networks:
+      - mqtt
+    command: --config /data/mongodbConfig.js
+    volumes:
+      - ./:/data
     ports:
       - '1883:1883'
       - '3000:3000'
@@ -12,6 +17,8 @@ services:
       - '8883:8883'
   mongo:
     container_name: mongo
+    networks:
+      - mqtt
     logging:
       driver: none
     image: mvertes/alpine-mongo
@@ -19,3 +26,8 @@ services:
       - db-data:/data/db
     ports:
       - "27017:27017"
+volumes:
+  db-data:
+    name: db-data
+networks:
+  mqtt:
