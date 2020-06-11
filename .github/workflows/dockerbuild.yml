@@ -32,9 +32,6 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
-      - uses: crazy-max/ghaction-docker-buildx@v1
-        if: ${{ github.event_name != 'pull_request' }}
-
       - name: Dev
         if: ${{ github.ref == 'refs/heads/master'}}
         run: |
