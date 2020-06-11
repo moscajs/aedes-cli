@@ -1,6 +1,7 @@
 # aedes-cli
 
 ![CI](https://github.com/moscajs/aedes-cli/workflows/CI/badge.svg)
+![Docker Build](https://github.com/moscajs/aedes-cli/workflows/Docker%20Build/badge.svg)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/moscajs/aedes-cli.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/moscajs/aedes-cli/alerts/)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/moscajs/aedes-cli.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/moscajs/aedes-cli/context:javascript)
 [![NPM version](https://img.shields.io/npm/v/aedes-cli.svg?style=flat)](https://www.npmjs.com/aedes-cli)
@@ -10,6 +11,13 @@
 [![opencollective](https://opencollective.com/aedes/donate/button.png)](https://opencollective.com/aedes/donate)
 
 Aedes MQTT broker cli plugin
+
+- [aedes-cli](#aedes-cli)
+  - [Install](#install)
+  - [Usage](#usage)
+  - [Docker](#docker)
+  - [Authorization](#authorization)
+  - [Persistence and Emitters](#persistence-and-emitters)
 
 ## Install
 
@@ -23,7 +31,7 @@ npm install aedes-cli -g
 
 Here you can see the options accepted by the command line tool:
 
-```bash
+```text
 $ aedes --help
 ______   ________  _______   ________   ______  
 /      \ |        \|       \ |        \ /      \
@@ -107,6 +115,10 @@ module.exports = {
 }
 
 ```
+
+## Docker
+
+In order to use `aedes-cli` with docker just run the command `docker run moscajs/aedes:latest [options]` or use [docker-compose](/docker/docker-compose.yml)
 
 ## Authorization
 
