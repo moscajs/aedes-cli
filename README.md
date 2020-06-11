@@ -26,7 +26,7 @@ npm install aedes-cli -g
 
 Here you can see the options accepted by the command line tool:
 
-```bash
+```text
 $ aedes --help
 ______   ________  _______   ________   ______  
 /      \ |        \|       \ |        \ /      \
