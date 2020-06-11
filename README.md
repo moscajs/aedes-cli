@@ -118,7 +118,7 @@ module.exports = {
 
 ## Docker
 
-`aedes-cli` can be easily runned with docker. If you want to use a local `credentials.json` file and/or a custom config file to pass using `--config` option you have to use docker volumes and map the local folder containing those files to a folder inside the container.
+`aedes-cli` is available on [Docker-Hub](https://hub.docker.com/repository/docker/moscajs/aedes/general) for `amd64, arm64v8, arm32v6, arm32v7, i386` archs. If you want to use a local `credentials.json` file and/or a custom config file to pass using `--config` option you have to use docker volumes and map the local folder containing those files to a folder inside the container.
 
 Example:
 
