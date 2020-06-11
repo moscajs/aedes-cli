@@ -1,6 +1,7 @@
 # aedes-cli
 
 ![CI](https://github.com/moscajs/aedes-cli/workflows/CI/badge.svg)
+![Docker Build](https://github.com/moscajs/aedes-cli/workflows/Docker%20Build/badge.svg)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/moscajs/aedes-cli.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/moscajs/aedes-cli/alerts/)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/moscajs/aedes-cli.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/moscajs/aedes-cli/context:javascript)
 
