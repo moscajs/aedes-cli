@@ -41,7 +41,7 @@ test('start multiple servers', async function (t) {
     tls: defaults.tlsPort,
     wss: defaults.wssPort
   }
-  var args = ['--protos', Object.keys(servers).join(','), '--cert', certFile, '--key', keyFile]
+  var args = ['--protos', ...Object.keys(servers), '--cert', certFile, '--key', keyFile]
 
   var setup = await start(args)
 

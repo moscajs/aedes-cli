@@ -57,12 +57,12 @@
     "aedes-persistence-mongodb": "^8.0.1",
     "aedes-persistence-redis": "^7.0.0",
     "aedes-stats": "^3.0.0",
-    "commander": "^5.1.0",
     "minimatch": "^3.0.4",
     "mqemitter-mongodb": "^7.0.2",
     "mqemitter-redis": "^4.0.3",
     "pino": "^6.3.2",
     "pino-pretty": "^4.0.0",
-    "ws": "^7.3.0"
+    "ws": "^7.3.0",
+    "yargs": "^15.3.1"
   }
 }
