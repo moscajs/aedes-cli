@@ -53,7 +53,6 @@ Commands:
                                                                        [default]
 
 Options:
-  --version              Show version number                           [boolean]
   --port, -p             the port to listent to         [number] [default: 1883]
   --host                 the host to listen to   [string] [default: "127.0.0.1"]
   --protos               protocols to use
@@ -91,6 +90,7 @@ Options:
   --verbose, -v          set the log level to INFO    [boolean] [default: false]
   --very-verbose         set the log level to DEBUG   [boolean] [default: false]
   --no-pretty            JSON logs                    [boolean] [default: false]
+  -V, --version          Show version number                           [boolean]
   -h, --help             Show help                                     [boolean]
 
 Examples:
