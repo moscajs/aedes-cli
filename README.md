@@ -58,7 +58,7 @@ Options:
   --host                 the host to listen to   [string] [default: "127.0.0.1"]
   --protos               protocols to use
                  [array] [choices: "tcp", "tls", "ws", "wss"] [default: ["tcp"]]
-  --credentials          the file containing the credentials            [string]
+  --credentials          <file> the file containing the credentials     [string]
   --authorize-publish    <pattern> the pattern for publishing to topics for the
                          added user                                     [string]
   --authorize-subscribe  <pattern> the pattern for subscribing to topics for the
@@ -94,10 +94,14 @@ Options:
   -h, --help             Show help                                     [boolean]
 
 Examples:
-  aedes --proto tcp ws           Starts Aedes broker with TCP and WS servers
-  aedes --config myConfig.js     Starts Aedes broker with custom config file
-  aedes adduser user1 password1  Add/Modify user1 with password1 to credentials
-  aedes rmuser user1             Removes user1 from credentials
+  aedes --proto tcp ws                      Starts Aedes broker with TCP and WS
+                                            servers
+  aedes --config myConfig.js                Starts Aedes broker with custom
+                                            config file
+  aedes --credentials ./credentials.json    Add/Modify user1 with password1 to
+  adduser user1 password1                   credentials
+  aedes --credentials ./credentials.json    Removes user1 from credentials
+  rmuser user1
 ```
 
 To fully use Aedes you need to define a configuration file where the communication

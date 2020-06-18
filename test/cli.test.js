@@ -56,7 +56,19 @@ test('start multiple servers', async function (t) {
   }
 })
 
-test('should not setup authorizer if credentials is not found', async function (t) {
+test('throws error when invalid command', async function (t) {
+  t.plan(1)
+
+  var command = 'invalid'
+
+  try {
+    await start([command])
+  } catch (error) {
+    t.equal(error.message, 'Unknown command ' + command, 'throws error')
+  }
+})
+
+test('do not setup authorizer if credentials is not found', async function (t) {
   t.plan(1)
 
   var setup = await start(['--credentials', credentialsFile])
@@ -68,8 +80,8 @@ test('should not setup authorizer if credentials is not found', async function (
   t.equal(success, true, 'should authorize everyone')
 })
 
-test('add/remove user from credentials', async function (t) {
-  t.plan(2)
+test('add/remove user and load authorizer', async function (t) {
+  t.plan(3)
 
   var username = 'aedes'
   var password = 'rocks'
@@ -83,6 +95,16 @@ test('add/remove user from credentials', async function (t) {
   var user = data[username]
 
   t.equal(!!user, true, 'user has been successfully created')
+
+  args = ['--credentials', credentialsFile]
+
+  var setup = await start(args)
+
+  var success = await promisify(setup.broker.authenticate)({}, username, password)
+
+  t.equal(success, true, 'should load authorizer and authenticate the user')
+
+  await stop(setup)
 
   args = ['--credentials', credentialsFile, 'rmuser', username]
 
@@ -103,7 +125,7 @@ test('add/remove user from credentials throws error', async function (t) {
   var username = 'aedes'
   var password = 'rocks'
 
-  var args = ['--credentials', '', 'adduser', username, password]
+  var args = ['adduser', username, password]
 
   try {
     await start(args)
@@ -112,7 +134,7 @@ test('add/remove user from credentials throws error', async function (t) {
     t.equal(error.message, 'you must specify a valid credential file using --credentials option', 'adduser throws error')
   }
 
-  args = ['--credentials', '', 'rmuser', username]
+  args = ['rmuser', username]
 
   try {
     await start(args)
