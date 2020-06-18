@@ -16,6 +16,6 @@ console.log(ascii)
 
 require('../lib/cli')(process.argv)
   .catch((err) => {
-    console.log(err)
+    console.log(err.message)
     process.exit(1)
   })

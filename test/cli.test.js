@@ -2,6 +2,8 @@ const { test } = require('tap')
 const { start, stop } = require('./helper')
 const { readFile, unlink } = require('fs').promises
 
+const { promisify } = require('util')
+
 const defaults = require('../config')
 
 const { join } = require('path')
@@ -52,6 +54,18 @@ test('start multiple servers', async function (t) {
     t.equal(info.address, defaults.host, 'should have default host')
     t.equal(info.port, servers[server._protocol], 'should have default port')
   }
+})
+
+test('should not setup authorizer if credentials is not found', async function (t) {
+  t.plan(1)
+
+  var setup = await start(['--credentials', credentialsFile])
+
+  t.tearDown(stop.bind(t, setup))
+
+  var broker = setup.broker
+  var success = await promisify(broker.authenticate)(null, null, null)
+  t.equal(success, true, 'should authorize everyone')
 })
 
 test('add/remove user from credentials', async function (t) {
@@ -108,9 +122,17 @@ test('add/remove user from credentials throws error', async function (t) {
 })
 
 test('key/cert errors', async function (t) {
-  t.plan(3)
+  t.plan(4)
 
-  var args = ['--key', keyFile]
+  var args = ['--protos', 'tls']
+
+  try {
+    await start(args)
+  } catch (error) {
+    t.equal(error.message, 'Must supply both private key and signed certificate to create secure aedes server', 'throws error when protocol is secure and key|cert is missing')
+  }
+
+  args = ['--protos', 'tls', '--key', keyFile]
 
   try {
     await start(args)
@@ -118,7 +140,7 @@ test('key/cert errors', async function (t) {
     t.equal(error.message, 'Must supply both private key and signed certificate to create secure aedes server', 'throws error when cert is missing')
   }
 
-  args = ['--cert', certFile]
+  args = ['--protos', 'tls', '--cert', certFile]
 
   try {
     await start(args)
@@ -126,7 +148,7 @@ test('key/cert errors', async function (t) {
     t.equal(error.message, 'Must supply both private key and signed certificate to create secure aedes server', 'throws error when key is missing')
   }
 
-  args = ['--cert', 'not/exists', '--key', 'not/exists']
+  args = ['--protos', 'tls', '--cert', 'not/exists', '--key', 'not/exists']
 
   try {
     await start(args)
