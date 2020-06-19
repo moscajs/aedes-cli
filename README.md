@@ -98,6 +98,8 @@ Options:
 Examples:
   aedes --protos tcp ws                     Starts Aedes broker with TCP and WS
                                             servers
+  aedes --config myConfig.js                Starts Aedes broker with custom
+                                            config file
   aedes --no-disable-stats -v               Starts Aedes broker with stats
   --statsInterval 2000                      enabled
   aedes --credentials ./credentials.json    Add/Modify user1 with password1 to
