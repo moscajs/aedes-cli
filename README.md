@@ -32,8 +32,9 @@ npm install aedes-cli -g
 Here you can see the options accepted by the command line tool:
 
 ```text
-$ aedes --help
-______   ________  _______   ________   ______  
+$ aedes -h
+
+ ______   ________  _______   ________   ______  
 /      \ |        \|       \ |        \ /      \
 |  $$$$$$\| $$$$$$$$| $$$$$$$\| $$$$$$$$|  $$$$$$\
 | $$__| $$| $$__    | $$  | $$| $$__    | $$___\$$
@@ -43,40 +44,64 @@ ______   ________  _______   ________   ______
 | $$  | $$| $$     \| $$    $$| $$     \ \$$    $$
 \$$   \$$ \$$$$$$$$ \$$$$$$$  \$$$$$$$$  \$$$$$$
 
-Usage: aedes [options] [command]
-
-Options:
-  -V, --version                    output the version number
-  -p, --port <n>                   the port to listen to
-  --host <IP>                      the host to listen to
-  --protos <protos>                comma separeted protocols. Allowed values are tcp, ws, wss, tls (default: ["tcp"])
-  --credentials <file>             the file containing the credentials (default: "./credentials.json")
-  --authorize-publish <pattern>    the pattern for publishing to topics for the added user
-  --authorize-subscribe <pattern>  the pattern for subscribing to topics for the added user
-  --concurrency <n>                broker maximum number of concurrent messages delivered by mqemitter
-  --queueLimit <n>                 broker maximum number of queued messages before client session is established
-  --maxClientsIdLength <n>         broker option to override MQTT 3.1.0 clients Id length limit
-  --heartbeatInterval <n>          interval in millisconds at which broker beats its health signal in $SYS/<broker.id>/heartbeat
-  --connectTimeout <n>             maximum waiting time in milliseconds waiting for a CONNECT packet.
-  --key <file>                     the server's private key
-  --cert <file>                    the certificate issued to the server
-  --reject-unauthorized            reject clients using self signed certificates (default: true)
-  --tls-port <n>                   the TLS port to listen to
-  --ws-port <n>                    start an mqtt-over-websocket server on the specified port
-  --wss-port <n>                   start an mqtt-over-secure-websocket server on the specified port
-  --disable-stats                  disable the publishing of stats under $SYS (default: true)
-  --broker-id <id>                 the id of the broker in the $SYS/<id> namespace
-  -c, --config <c>                 the config file to use (override every other option)
-  -v, --verbose                    set the log level to INFO
-  --very-verbose                   set the log level to DEBUG
-  --no-pretty                      JSON logs
-  -h, --help                       display help for command
+Usage: aedes [command] [options]
 
 Commands:
-  adduser <user> <pass>            Add a user to the given credentials file
-  rmuser <user>                    Removes a user from the given credentials file
-  start                            start the server (optional)
-  help [command]                   display help for command
+  aedes adduser <user> <password>  Add a user to given credentials file
+  aedes rmuser <user>              Removes a user from given credentials file
+  aedes start                      Starts Aedes broker with given options
+                                                                       [default]
+
+Options:
+  --port, -p             the port to listent to         [number] [default: 1883]
+  --host                 the host to listen to   [string] [default: "127.0.0.1"]
+  --protos               protocols to use
+                 [array] [choices: "tcp", "tls", "ws", "wss"] [default: ["tcp"]]
+  --credentials          <file> the file containing the credentials     [string]
+  --authorize-publish    <pattern> the pattern for publishing to topics for the
+                         added user                                     [string]
+  --authorize-subscribe  <pattern> the pattern for subscribing to topics for the
+                         added user                                     [string]
+  --concurrency          broker maximum number of concurrent messages delivered
+                         by mqemitter                    [number] [default: 100]
+  --queueLimit           broker maximum number of queued messages before client
+                         session is established           [number] [default: 42]
+  --maxClientsIdLength   broker option to override MQTT 3.1.0 clients Id length
+                         limit                            [number] [default: 23]
+  --heartbeatInterval    interval in millisconds at which broker beats its
+                         health signal in $SYS/<broker.id>/heartbeat
+                                                       [number] [default: 60000]
+  --connectTimeout       maximum waiting time in milliseconds waiting for a
+                         CONNECT packet                [number] [default: 30000]
+  --key                  <file> the server's private key                [string]
+  --cert                 <file> the certificate issued to the server    [string]
+  --reject-unauthorized  reject clients using self signed certificates
+                                                       [boolean] [default: true]
+  --tls-port             the TLS port to listen to      [number] [default: 8883]
+  --ws-port              mqtt-over-websocket server port[number] [default: 3000]
+  --wss-port             mqtt-over-secure-websocket server port
+                                                        [number] [default: 4000]
+  --disable-stats        disable the publishing of stats under $SYS
+                                                       [boolean] [default: true]
+  --broker-id            the id of the broker in the $SYS/<id> namespace
+                                                 [string] [default: "aedes-cli"]
+  --config, -c           <file> the config file to use (overrides every other
+                         option)                                        [string]
+  --verbose, -v          set the log level to INFO    [boolean] [default: false]
+  --very-verbose         set the log level to DEBUG   [boolean] [default: false]
+  --no-pretty            JSON logs                    [boolean] [default: false]
+  -V, --version          Show version number                           [boolean]
+  -h, --help             Show help                                     [boolean]
+
+Examples:
+  aedes --proto tcp ws                      Starts Aedes broker with TCP and WS
+                                            servers
+  aedes --config myConfig.js                Starts Aedes broker with custom
+                                            config file
+  aedes --credentials ./credentials.json    Add/Modify user1 with password1 to
+  adduser user1 password1                   credentials
+  aedes --credentials ./credentials.json    Removes user1 from credentials
+  rmuser user1
 ```
 
 To fully use Aedes you need to define a configuration file where the communication

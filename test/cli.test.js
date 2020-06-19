@@ -2,6 +2,8 @@ const { test } = require('tap')
 const { start, stop } = require('./helper')
 const { readFile, unlink } = require('fs').promises
 
+const { promisify } = require('util')
+
 const defaults = require('../config')
 
 const { join } = require('path')
@@ -39,7 +41,7 @@ test('start multiple servers', async function (t) {
     tls: defaults.tlsPort,
     wss: defaults.wssPort
   }
-  var args = ['--protos', Object.keys(servers).join(','), '--cert', certFile, '--key', keyFile]
+  var args = ['--protos', ...Object.keys(servers), '--cert', certFile, '--key', keyFile]
 
   var setup = await start(args)
 
@@ -54,8 +56,32 @@ test('start multiple servers', async function (t) {
   }
 })
 
-test('add/remove user from credentials', async function (t) {
-  t.plan(2)
+test('throws error when invalid command', async function (t) {
+  t.plan(1)
+
+  var command = 'invalid'
+
+  try {
+    await start([command])
+  } catch (error) {
+    t.equal(error.message, 'Unknown command ' + command, 'throws error')
+  }
+})
+
+test('do not setup authorizer if credentials is not found', async function (t) {
+  t.plan(1)
+
+  var setup = await start(['--credentials', credentialsFile])
+
+  t.tearDown(stop.bind(t, setup))
+
+  var broker = setup.broker
+  var success = await promisify(broker.authenticate)(null, null, null)
+  t.equal(success, true, 'should authorize everyone')
+})
+
+test('add/remove user and load authorizer', async function (t) {
+  t.plan(3)
 
   var username = 'aedes'
   var password = 'rocks'
@@ -69,6 +95,16 @@ test('add/remove user from credentials', async function (t) {
   var user = data[username]
 
   t.equal(!!user, true, 'user has been successfully created')
+
+  args = ['--credentials', credentialsFile]
+
+  var setup = await start(args)
+
+  var success = await promisify(setup.broker.authenticate)({}, username, password)
+
+  t.equal(success, true, 'should load authorizer and authenticate the user')
+
+  await stop(setup)
 
   args = ['--credentials', credentialsFile, 'rmuser', username]
 
@@ -89,7 +125,7 @@ test('add/remove user from credentials throws error', async function (t) {
   var username = 'aedes'
   var password = 'rocks'
 
-  var args = ['--credentials', '', 'adduser', username, password]
+  var args = ['adduser', username, password]
 
   try {
     await start(args)
@@ -98,7 +134,7 @@ test('add/remove user from credentials throws error', async function (t) {
     t.equal(error.message, 'you must specify a valid credential file using --credentials option', 'adduser throws error')
   }
 
-  args = ['--credentials', '', 'rmuser', username]
+  args = ['rmuser', username]
 
   try {
     await start(args)
@@ -108,9 +144,17 @@ test('add/remove user from credentials throws error', async function (t) {
 })
 
 test('key/cert errors', async function (t) {
-  t.plan(3)
+  t.plan(4)
 
-  var args = ['--key', keyFile]
+  var args = ['--protos', 'tls']
+
+  try {
+    await start(args)
+  } catch (error) {
+    t.equal(error.message, 'Must supply both private key and signed certificate to create secure aedes server', 'throws error when protocol is secure and key|cert is missing')
+  }
+
+  args = ['--protos', 'tls', '--key', keyFile]
 
   try {
     await start(args)
@@ -118,7 +162,7 @@ test('key/cert errors', async function (t) {
     t.equal(error.message, 'Must supply both private key and signed certificate to create secure aedes server', 'throws error when cert is missing')
   }
 
-  args = ['--cert', certFile]
+  args = ['--protos', 'tls', '--cert', certFile]
 
   try {
     await start(args)
@@ -126,7 +170,7 @@ test('key/cert errors', async function (t) {
     t.equal(error.message, 'Must supply both private key and signed certificate to create secure aedes server', 'throws error when key is missing')
   }
 
-  args = ['--cert', 'not/exists', '--key', 'not/exists']
+  args = ['--protos', 'tls', '--cert', 'not/exists', '--key', 'not/exists']
 
   try {
     await start(args)

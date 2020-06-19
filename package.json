@@ -47,22 +47,22 @@
   "homepage": "https://github.com/moscajs/aedes-cli#readme",
   "devDependencies": {
     "leaked-handles": "^5.2.0",
-    "release-it": "^13.6.2",
+    "release-it": "^13.6.3",
     "snazzy": "^8.0.0",
     "standard": "^14.3.4",
     "tap": "^14.10.7"
   },
   "dependencies": {
-    "aedes": "^0.42.1",
+    "aedes": "^0.42.2",
     "aedes-persistence-mongodb": "^8.0.1",
     "aedes-persistence-redis": "^7.0.0",
     "aedes-stats": "^3.0.0",
-    "commander": "^5.1.0",
     "minimatch": "^3.0.4",
     "mqemitter-mongodb": "^7.0.2",
     "mqemitter-redis": "^4.0.3",
     "pino": "^6.3.2",
     "pino-pretty": "^4.0.0",
-    "ws": "^7.3.0"
+    "ws": "^7.3.0",
+    "yargs": "^15.3.1"
   }
 }
