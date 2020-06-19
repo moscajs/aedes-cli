@@ -19,6 +19,7 @@ module.exports = {
   heartbeatInterval: 60000,
   connectTimeout: 30000,
   disableStats: true,
+  statsInterval: 5000,
   // PERSISTENCES
   persistence: null,
   mq: null,
