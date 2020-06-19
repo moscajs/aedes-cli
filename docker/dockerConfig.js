@@ -10,7 +10,7 @@ module.exports = {
   cert: null,
   rejectUnauthorized: true,
   // AUTHORIZER
-  credentials: './credentials.json',
+  credentials: null,
   // AEDES
   brokerId: 'aedes-cli',
   concurrency: 100,
@@ -18,7 +18,8 @@ module.exports = {
   maxClientsIdLength: 23,
   heartbeatInterval: 60000,
   connectTimeout: 30000,
-  disableStats: true,
+  stats: false,
+  statsInterval: 5000,
   // PERSISTENCES
   persistence: {
     name: 'mongodb',

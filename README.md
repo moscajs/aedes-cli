@@ -81,8 +81,10 @@ Options:
   --ws-port              mqtt-over-websocket server port[number] [default: 3000]
   --wss-port             mqtt-over-secure-websocket server port
                                                         [number] [default: 4000]
-  --disable-stats        disable the publishing of stats under $SYS
-                                                       [boolean] [default: true]
+  --stats                enable publish of stats under $SYS
+                                                      [boolean] [default: false]
+  --stats-interval       interval between aedes stats pubs
+                                                        [number] [default: 5000]
   --broker-id            the id of the broker in the $SYS/<id> namespace
                                                  [string] [default: "aedes-cli"]
   --config, -c           <file> the config file to use (overrides every other
@@ -94,10 +96,12 @@ Options:
   -h, --help             Show help                                     [boolean]
 
 Examples:
-  aedes --proto tcp ws                      Starts Aedes broker with TCP and WS
+  aedes --protos tcp ws                     Starts Aedes broker with TCP and WS
                                             servers
   aedes --config myConfig.js                Starts Aedes broker with custom
                                             config file
+  aedes --stats -v --statsInterval 2000     Starts Aedes broker with stats
+                                            enabled
   aedes --credentials ./credentials.json    Add/Modify user1 with password1 to
   adduser user1 password1                   credentials
   aedes --credentials ./credentials.json    Removes user1 from credentials

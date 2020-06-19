@@ -18,7 +18,8 @@ module.exports = {
   maxClientsIdLength: 23,
   heartbeatInterval: 60000,
   connectTimeout: 30000,
-  disableStats: true,
+  stats: false,
+  statsInterval: 5000,
   // PERSISTENCES
   persistence: {
     name: 'redis',
