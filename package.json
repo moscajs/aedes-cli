@@ -1,6 +1,6 @@
 {
   "name": "aedes-cli",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Aedes MQTT broker from cli",
   "main": "index.js",
   "bin": {
