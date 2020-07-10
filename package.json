@@ -56,7 +56,7 @@
     "aedes": "^0.42.4",
     "aedes-persistence-mongodb": "^8.0.1",
     "aedes-persistence-redis": "^7.0.0",
-    "aedes-stats": "^3.0.0",
+    "aedes-stats": "^4.0.0",
     "minimatch": "^3.0.4",
     "mqemitter-mongodb": "^7.0.2",
     "mqemitter-redis": "^4.0.3",
