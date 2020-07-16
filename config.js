@@ -10,7 +10,7 @@ module.exports = {
   cert: null,
   rejectUnauthorized: true,
   // AUTHORIZER
-  credentials: null,
+  credentials: '',
   // AEDES
   brokerId: 'aedes-cli',
   concurrency: 100,

@@ -5,7 +5,7 @@ const Authorizer = require('../lib/authorizer')
 const { promisify } = require('util')
 
 test('add user and authenticate/authorize', async function (t) {
-  t.plan(7)
+  t.plan(8)
   var authorizer = new Authorizer()
 
   var username = 'aedes'
@@ -20,7 +20,11 @@ test('add user and authenticate/authorize', async function (t) {
 
   var authenticate = promisify(authorizer.authenticate())
 
-  var res = await authenticate(client, username, password)
+  var res = await authenticate(client, 'pippo', 'pluto')
+
+  t.equal(res, false, 'should reject authentication')
+
+  res = await authenticate(client, username, password)
 
   t.equal(res, true, 'should successfully authenticate')
 
