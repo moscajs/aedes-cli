@@ -37,10 +37,10 @@ test('add user and authenticate/authorize', async function (t) {
   res = await authorizePub(client, 'allowed/topic/1', null)
   t.equal(res, true, 'should authorize pub on allowed topics')
 
-  res = await authorizeSub(client, 'not/allowed')
+  res = await authorizeSub(client, { topic: 'not/allowed' })
   t.equal(res, false, 'should not authorize sub on not allowed topics')
 
-  res = await authorizeSub(client, 'allowed/topic/1')
+  res = await authorizeSub(client, { topic: 'allowed/topic/1' })
   t.equal(res, true, 'should authorize sub on allowed topics')
 
   authorizer.rmUser(username)
