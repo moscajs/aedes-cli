@@ -10,11 +10,11 @@ test('add user and authenticate/authorize', async function (t) {
 
   var username = 'aedes'
   var password = 'rocks'
-  var allowed = 'allowed/topic/*'
+  var allowedGlob = 'allowed/topic/*'
 
   var client = {}
 
-  await authorizer.addUser(username, password, allowed, allowed)
+  await authorizer.addUser(username, password, allowedGlob, allowedGlob)
 
   t.notEqual(authorizer.users[username], undefined, 'should add user')
 
@@ -31,17 +31,20 @@ test('add user and authenticate/authorize', async function (t) {
   var authorizePub = promisify(authorizer.authorizePublish())
   var authorizeSub = promisify(authorizer.authorizeSubscribe())
 
-  res = await authorizePub(client, { topic: 'not/allowed' })
+  var notAllowed = { topic: 'not/allowed' }
+  var allowed = { topic: 'allowed/topic/1' }
+
+  res = await authorizePub(client, notAllowed)
   t.equal(res, false, 'should not authorize pub on not allowed topics')
 
-  res = await authorizePub(client, { topic: 'allowed/topic/1' })
+  res = await authorizePub(client, allowed)
   t.equal(res, true, 'should authorize pub on allowed topics')
 
-  res = await authorizeSub(client, { topic: 'not/allowed' })
-  t.equal(res, false, 'should not authorize sub on not allowed topics')
+  res = await authorizeSub(client, notAllowed)
+  t.equal(res, null, 'should not authorize sub on not allowed topics')
 
-  res = await authorizeSub(client, { topic: 'allowed/topic/1' })
-  t.equal(res, true, 'should authorize sub on allowed topics')
+  res = await authorizeSub(client, allowed)
+  t.deepEqual(res, allowed, 'should authorize sub on allowed topics')
 
   authorizer.rmUser(username)
 
