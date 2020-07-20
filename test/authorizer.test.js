@@ -31,10 +31,10 @@ test('add user and authenticate/authorize', async function (t) {
   var authorizePub = promisify(authorizer.authorizePublish())
   var authorizeSub = promisify(authorizer.authorizeSubscribe())
 
-  res = await authorizePub(client, { topic: 'not/allowed' }, null)
+  res = await authorizePub(client, { topic: 'not/allowed' })
   t.equal(res, false, 'should not authorize pub on not allowed topics')
 
-  res = await authorizePub(client, { topic: 'allowed/topic/1' }, null)
+  res = await authorizePub(client, { topic: 'allowed/topic/1' })
   t.equal(res, true, 'should authorize pub on allowed topics')
 
   res = await authorizeSub(client, { topic: 'not/allowed' })
