@@ -7,6 +7,7 @@ WORKDIR /usr/src/app/
 COPY . .
 
 RUN npm install
+RUN chmod 755 /usr/src/app/bin/aedes
 
 EXPOSE 1883 3000 8883 4000
 
