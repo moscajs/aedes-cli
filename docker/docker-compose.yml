@@ -7,7 +7,7 @@ services:
     stop_signal: SIGINT
     networks:
       - mqtt
-    command: --config /data/mongodbConfig.js
+    command: --config /data/dockerConfig.js
     volumes:
       - ./:/data
     ports:
