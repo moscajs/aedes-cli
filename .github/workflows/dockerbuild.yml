@@ -21,7 +21,7 @@ jobs:
         run: |
           docker buildx build \
           -f docker/Dockerfile \
-          --platform linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7,linux/386 \
+          --platform linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 \
           -t moscajs/aedes:dev \
           .
       - name: Login to dockerhub
@@ -37,7 +37,7 @@ jobs:
         run: |
           docker buildx build \
           -f docker/Dockerfile \
-          --platform linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7,linux/386 \
+          --platform linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 \
           -t moscajs/aedes:dev \
           --push \
           .
@@ -47,7 +47,7 @@ jobs:
         run: |
           docker buildx build \
           -f docker/Dockerfile \
-          --platform linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7,linux/386 \
+          --platform linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 \
           -t moscajs/aedes:$(echo ${GITHUB_REF} | sed "s/refs\/tags\/v//") \
           -t moscajs/aedes:latest \
           --push \
