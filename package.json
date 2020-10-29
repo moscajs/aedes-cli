@@ -48,7 +48,7 @@
   "devDependencies": {
     "leaked-handles": "^5.2.0",
     "release-it": "^14.0.2",
-    "standard": "^15.0.1",
+    "standard": "^16.0.0",
     "snazzy": "^9.0.0",
     "tap": "^14.10.7"
   },
