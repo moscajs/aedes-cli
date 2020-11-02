@@ -16,16 +16,16 @@ require('leaked-handles')
 
 test('start without args', async function (t) {
   t.plan(7)
-  var setup = await start()
+  const setup = await start()
 
   t.tearDown(stop.bind(t, setup))
 
   t.equal(setup.servers.length, 1, 'should start one server')
-  var info = setup.servers[0].address()
+  const info = setup.servers[0].address()
   t.equal(info.address, defaults.host, 'should have default host')
   t.equal(info.port, defaults.port, 'should have default port')
 
-  var broker = setup.broker
+  const broker = setup.broker
   t.equal(broker.id, defaults.brokerId, 'should have default brokerId')
   t.equal(broker.queueLimit, defaults.queueLimit, 'should have default queueLimit')
   t.equal(broker.maxClientsIdLength, defaults.maxClientsIdLength, 'should have default maxClientsIdLength')
@@ -35,22 +35,22 @@ test('start without args', async function (t) {
 test('start multiple servers', async function (t) {
   t.plan(9)
 
-  var servers = {
+  const servers = {
     tcp: defaults.port,
     ws: defaults.wsPort,
     tls: defaults.tlsPort,
     wss: defaults.wssPort
   }
-  var args = ['--protos', ...Object.keys(servers), '--cert', certFile, '--key', keyFile]
+  const args = ['--protos', ...Object.keys(servers), '--cert', certFile, '--key', keyFile]
 
-  var setup = await start(args)
+  const setup = await start(args)
 
   t.tearDown(stop.bind(t, setup))
 
   t.equal(setup.servers.length, 4, 'should start 4 server')
 
   for (const server of setup.servers) {
-    var info = server.address()
+    const info = server.address()
     t.equal(info.address, defaults.host, 'should have default host')
     t.equal(info.port, servers[server._protocol], 'should have default port')
   }
@@ -59,7 +59,7 @@ test('start multiple servers', async function (t) {
 test('throws error when invalid command', async function (t) {
   t.plan(1)
 
-  var command = 'invalid'
+  const command = 'invalid'
 
   try {
     await start([command])
@@ -71,36 +71,36 @@ test('throws error when invalid command', async function (t) {
 test('do not setup authorizer if credentials is not found', async function (t) {
   t.plan(1)
 
-  var setup = await start(['--credentials', credentialsFile])
+  const setup = await start(['--credentials', credentialsFile])
 
   t.tearDown(stop.bind(t, setup))
 
-  var broker = setup.broker
-  var success = await promisify(broker.authenticate)(null, null, null)
+  const broker = setup.broker
+  const success = await promisify(broker.authenticate)(null, null, null)
   t.equal(success, true, 'should authorize everyone')
 })
 
 test('add/remove user and load authorizer', async function (t) {
   t.plan(3)
 
-  var username = 'aedes'
-  var password = 'rocks'
+  const username = 'aedes'
+  const password = 'rocks'
 
-  var args = ['--credentials', credentialsFile, 'adduser', username, password]
+  let args = ['--credentials', credentialsFile, 'adduser', username, password]
 
   await start(args)
 
-  var data = JSON.parse(await readFile(credentialsFile))
+  let data = JSON.parse(await readFile(credentialsFile))
 
-  var user = data[username]
+  let user = data[username]
 
   t.equal(!!user, true, 'user has been successfully created')
 
   args = ['--credentials', credentialsFile]
 
-  var setup = await start(args)
+  const setup = await start(args)
 
-  var success = await promisify(setup.broker.authenticate)({}, username, password)
+  const success = await promisify(setup.broker.authenticate)({}, username, password)
 
   t.equal(success, true, 'should load authorizer and authenticate the user')
 
@@ -122,10 +122,10 @@ test('add/remove user and load authorizer', async function (t) {
 test('add/remove user from credentials throws error', async function (t) {
   t.plan(2)
 
-  var username = 'aedes'
-  var password = 'rocks'
+  const username = 'aedes'
+  const password = 'rocks'
 
-  var args = ['adduser', username, password]
+  let args = ['adduser', username, password]
 
   try {
     await start(args)
@@ -146,7 +146,7 @@ test('add/remove user from credentials throws error', async function (t) {
 test('key/cert errors', async function (t) {
   t.plan(4)
 
-  var args = ['--protos', 'tls']
+  let args = ['--protos', 'tls']
 
   try {
     await start(args)
