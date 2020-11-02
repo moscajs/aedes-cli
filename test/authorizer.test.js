@@ -6,21 +6,21 @@ const { promisify } = require('util')
 
 test('add user and authenticate/authorize', async function (t) {
   t.plan(8)
-  var authorizer = new Authorizer()
+  const authorizer = new Authorizer()
 
-  var username = 'aedes'
-  var password = 'rocks'
-  var allowedGlob = 'allowed/topic/*'
+  const username = 'aedes'
+  const password = 'rocks'
+  const allowedGlob = 'allowed/topic/*'
 
-  var client = {}
+  const client = {}
 
   await authorizer.addUser(username, password, allowedGlob, allowedGlob)
 
   t.notEqual(authorizer.users[username], undefined, 'should add user')
 
-  var authenticate = promisify(authorizer.authenticate())
+  const authenticate = promisify(authorizer.authenticate())
 
-  var res = await authenticate(client, 'pippo', 'pluto')
+  let res = await authenticate(client, 'pippo', 'pluto')
 
   t.equal(res, false, 'should reject authentication')
 
@@ -28,11 +28,11 @@ test('add user and authenticate/authorize', async function (t) {
 
   t.equal(res, true, 'should successfully authenticate')
 
-  var authorizePub = promisify(authorizer.authorizePublish())
-  var authorizeSub = promisify(authorizer.authorizeSubscribe())
+  const authorizePub = promisify(authorizer.authorizePublish())
+  const authorizeSub = promisify(authorizer.authorizeSubscribe())
 
-  var notAllowed = { topic: 'not/allowed' }
-  var allowed = { topic: 'allowed/topic/1' }
+  const notAllowed = { topic: 'not/allowed' }
+  const allowed = { topic: 'allowed/topic/1' }
 
   try {
     res = await authorizePub(client, notAllowed)

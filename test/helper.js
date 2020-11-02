@@ -1,4 +1,4 @@
-var cli = require('../lib/cli')
+const cli = require('../lib/cli')
 
 const baseArgs = ['node', 'aedes']
 
