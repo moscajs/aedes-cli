@@ -54,7 +54,7 @@
   },
   "dependencies": {
     "aedes": "^0.45.0",
-    "aedes-persistence-mongodb": "^8.1.2",
+    "aedes-persistence-mongodb": "^8.2.0",
     "aedes-persistence-redis": "^8.0.0",
     "aedes-stats": "^4.0.0",
     "minimatch": "^3.0.4",
