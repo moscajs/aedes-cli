@@ -53,7 +53,7 @@
     "tap": "^14.10.8"
   },
   "dependencies": {
-    "aedes": "^0.45.1",
+    "aedes": "^0.45.2",
     "aedes-persistence-mongodb": "^8.2.0",
     "aedes-persistence-redis": "^8.0.0",
     "aedes-stats": "^4.0.0",
