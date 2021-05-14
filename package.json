@@ -55,7 +55,7 @@
   "dependencies": {
     "aedes": "^0.45.2",
     "aedes-persistence-mongodb": "^8.2.0",
-    "aedes-persistence-redis": "^8.0.0",
+    "aedes-persistence-redis": "^8.0.1",
     "aedes-stats": "^4.0.0",
     "minimatch": "^3.0.4",
     "mqemitter-mongodb": "^7.0.4",
