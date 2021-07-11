@@ -10,6 +10,7 @@
     "test": "npm run lint:standard && npm run test:ci",
     "lint:standard": "standard --verbose | snazzy",
     "test:ci": "tap test/*.test.js",
+    "docker:build": "docker build -t moscajs/aedes:latest -f docker/Dockerfile .",
     "release": "read -p 'GITHUB_TOKEN: ' GITHUB_TOKEN && export GITHUB_TOKEN=$GITHUB_TOKEN && release-it --disable-metrics"
   },
   "release-it": {
