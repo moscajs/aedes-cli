@@ -59,7 +59,7 @@
     "aedes-stats": "^4.0.0",
     "minimatch": "^3.0.4",
     "mqemitter-mongodb": "^7.0.4",
-    "mqemitter-redis": "^4.0.3",
+    "mqemitter-redis": "^4.2.0",
     "pino": "^6.13.2",
     "pino-pretty": "^4.3.0",
     "ws": "^7.5.6",
