@@ -18,7 +18,7 @@ test('start without args', async function (t) {
   t.plan(7)
   const setup = await start()
 
-  t.tearDown(stop.bind(t, setup))
+  t.teardown(stop.bind(t, setup))
 
   t.equal(setup.servers.length, 1, 'should start one server')
   const info = setup.servers[0].address()
@@ -45,7 +45,7 @@ test('start multiple servers', async function (t) {
 
   const setup = await start(args)
 
-  t.tearDown(stop.bind(t, setup))
+  t.teardown(stop.bind(t, setup))
 
   t.equal(setup.servers.length, 4, 'should start 4 server')
 
@@ -73,10 +73,10 @@ test('do not setup authorizer if credentials is not found', async function (t) {
 
   const setup = await start(['--credentials', credentialsFile])
 
-  t.tearDown(stop.bind(t, setup))
+  t.teardown(stop.bind(t, setup))
 
   const broker = setup.broker
-  const success = await promisify(broker.authenticate)(null, null, null)
+  const success = await promisify(broker.authenticate)()
   t.equal(success, true, 'should authorize everyone')
 })
 

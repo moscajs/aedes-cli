@@ -16,7 +16,7 @@ test('add user and authenticate/authorize', async function (t) {
 
   await authorizer.addUser(username, password, allowedGlob, allowedGlob)
 
-  t.notEqual(authorizer.users[username], undefined, 'should add user')
+  t.not(authorizer.users[username], undefined, 'should add user')
 
   const authenticate = promisify(authorizer.authenticate())
 
