@@ -22,11 +22,7 @@ jobs:
         db: [mongodb, redis]
         include:
           - db: mongodb
-            image: mongo
-            env:
-                MONGO_INITDB_ROOT_USERNAME: test
-                MONGO_INITDB_ROOT_PASSWORD: password
-                MONGO_INITDB_DATABASE: test
+            image: mvertes/alpine-mongo
             options: >-
               --health-cmd mongo
               --health-interval 10s
@@ -45,7 +41,6 @@ jobs:
       db:
         image: ${{ matrix.image }}
         options: ${{ matrix.options }}
-        env: ${{ matrix.env }}
         ports:
           - ${{ matrix.port }}:${{ matrix.port }}
     steps:
