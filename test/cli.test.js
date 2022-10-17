@@ -76,7 +76,7 @@ test('do not setup authorizer if credentials is not found', async function (t) {
   t.teardown(stop.bind(t, setup))
 
   const broker = setup.broker
-  const success = await promisify(broker.authenticate)()
+  const success = await promisify(broker.authenticate)(null, null, null)
   t.equal(success, true, 'should authorize everyone')
 })
 
