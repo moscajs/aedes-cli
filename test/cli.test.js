@@ -5,12 +5,15 @@ const { readFile, unlink } = require('fs').promises
 const { promisify } = require('util')
 
 const defaults = require('../config')
+const path = require('path')
 
-const { join } = require('path')
+const credentialsFile = path.resolve(__dirname, '../credentials.json')
+const certFile = path.resolve(__dirname, './secure/server.cert')
+const keyFile = path.resolve(__dirname, './secure/server.key')
 
-const credentialsFile = join(__dirname, '/credentials.json')
-const certFile = join(__dirname, '/secure/server.cert')
-const keyFile = join(__dirname, '/secure/server.key')
+console.log('credentialsFile', credentialsFile)
+console.log('certFile', certFile)
+console.log('keyFile', keyFile)
 
 require('leaked-handles')
 
@@ -18,7 +21,7 @@ test('start without args', async function (t) {
   t.plan(7)
   const setup = await start()
 
-  t.tearDown(stop.bind(t, setup))
+  t.teardown(stop.bind(t, setup))
 
   t.equal(setup.servers.length, 1, 'should start one server')
   const info = setup.servers[0].address()
@@ -45,7 +48,7 @@ test('start multiple servers', async function (t) {
 
   const setup = await start(args)
 
-  t.tearDown(stop.bind(t, setup))
+  t.teardown(stop.bind(t, setup))
 
   t.equal(setup.servers.length, 4, 'should start 4 server')
 
@@ -73,7 +76,7 @@ test('do not setup authorizer if credentials is not found', async function (t) {
 
   const setup = await start(['--credentials', credentialsFile])
 
-  t.tearDown(stop.bind(t, setup))
+  t.teardown(stop.bind(t, setup))
 
   const broker = setup.broker
   const success = await promisify(broker.authenticate)(null, null, null)

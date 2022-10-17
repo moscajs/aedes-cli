@@ -1,4 +1,4 @@
-FROM node:erbium-alpine
+FROM node:current-alpine
 
 LABEL maintainer="robertsLando"
 

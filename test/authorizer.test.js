@@ -16,7 +16,7 @@ test('add user and authenticate/authorize', async function (t) {
 
   await authorizer.addUser(username, password, allowedGlob, allowedGlob)
 
-  t.notEqual(authorizer.users[username], undefined, 'should add user')
+  t.not(authorizer.users[username], undefined, 'should add user')
 
   const authenticate = promisify(authorizer.authenticate())
 
@@ -47,7 +47,7 @@ test('add user and authenticate/authorize', async function (t) {
   t.equal(res, null, 'should not authorize sub on not allowed topics')
 
   res = await authorizeSub(client, allowed)
-  t.deepEqual(res, allowed, 'should authorize sub on allowed topics')
+  t.same(res, allowed, 'should authorize sub on allowed topics')
 
   authorizer.rmUser(username)
 
