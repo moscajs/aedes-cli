@@ -45,6 +45,7 @@ jobs:
       db:
         image: ${{ matrix.image }}
         options: ${{ matrix.options }}
+        env: ${{ matrix.env }}
         ports:
           - ${{ matrix.port }}:${{ matrix.port }}
     steps:
