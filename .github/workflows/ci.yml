@@ -18,13 +18,24 @@ jobs:
         include:
           - db: mongodb
             image: mongo
+            options: >-
+              --health-cmd mongo
+              --health-interval 10s
+              --health-timeout 5s
+              --health-retries 5
             port: 27017
           - db: redis
             image: redis
             port: 6379
+            options: >-
+              --health-cmd "redis-cli ping"
+              --health-interval 10s
+              --health-timeout 5s
+              --health-retries 5
     services:
       db:
         image: ${{ matrix.image }}
+        options: ${{ matrix.options }}
         ports:
           - ${{ matrix.port }}:${{ matrix.port }}
     steps:
