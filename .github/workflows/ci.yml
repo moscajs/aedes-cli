@@ -19,6 +19,7 @@ jobs:
     strategy:
       matrix:
         node-version: [14, 16, 18]
+        db: [mongodb, redis]
         include:
           - db: mongodb
             image: mongo
