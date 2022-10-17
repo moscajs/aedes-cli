@@ -22,7 +22,7 @@ jobs:
         include:
           - db: mongodb
             image: mongo
-            options: |
+            options: >-
               --health-cmd mongo
               --health-interval 10s
               --health-timeout 5s
@@ -31,7 +31,7 @@ jobs:
           - db: redis
             image: redis
             port: 6379
-            options: |
+            options: >-
               --health-cmd "redis-cli ping"
               --health-interval 10s
               --health-timeout 5s
