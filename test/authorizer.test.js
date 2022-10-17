@@ -47,7 +47,7 @@ test('add user and authenticate/authorize', async function (t) {
   t.equal(res, null, 'should not authorize sub on not allowed topics')
 
   res = await authorizeSub(client, allowed)
-  t.deepEqual(res, allowed, 'should authorize sub on allowed topics')
+  t.same(res, allowed, 'should authorize sub on allowed topics')
 
   authorizer.rmUser(username)
 

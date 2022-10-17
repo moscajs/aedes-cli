@@ -5,12 +5,15 @@ const { readFile, unlink } = require('fs').promises
 const { promisify } = require('util')
 
 const defaults = require('../config')
+const path = require('path')
 
-const { join } = require('path')
+const credentialsFile = path.resolve(__dirname, '../credentials.json')
+const certFile = path.resolve(__dirname, './secure/server.cert')
+const keyFile = path.resolve(__dirname, './secure/server.key')
 
-const credentialsFile = join(__dirname, '/credentials.json')
-const certFile = join(__dirname, '/secure/server.cert')
-const keyFile = join(__dirname, '/secure/server.key')
+console.log('credentialsFile', credentialsFile)
+console.log('certFile', certFile)
+console.log('keyFile', keyFile)
 
 require('leaked-handles')
 
