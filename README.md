@@ -8,7 +8,7 @@
 [![NPM downloads](https://img.shields.io/npm/dm/aedes-cli.svg?style=flat)](https://www.npmjs.com/aedes-cli)
 [![Known Vulnerabilities](https://snyk.io/test/github/moscajs/aedes-cli/badge.svg?targetFile=package.json)](https://snyk.io/test/github/moscajs/aedes-cli?targetFile=package.json)
 
-[![opencollective](https://opencollective.com/aedes/donate/button.png)](https://opencollective.com/aedes/donate)
+[![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/MVg9wc2HE "Buy Me A Coffee") [<img style="background:#ccc;border-radius:10px" alt="PayPal" src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-color.svg" alt="PayPal" width="200" height="40px" />](https://paypal.me/daniellando) [![Patreon](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://www.patreon.com/bePatron?u=16906849)
 
 [Aedes](https://github.com/moscajs/aedes) MQTT broker CLI plugin
 
