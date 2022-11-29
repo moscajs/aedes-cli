@@ -43,9 +43,12 @@ test('add user and authenticate/authorize', async function (t) {
   await authorizePub(client, allowed)
   t.pass('should authorize pub on allowed topics')
 
-  res = await authorizeSub(client, notAllowed)
-  t.equal(res, null, 'should not authorize sub on not allowed topics')
-
+  try {
+    res = await authorizeSub(client, notAllowed)
+  }catch (error) {
+    t.equal(error.message, 'Subscribe not authorized', 'should not authorize sub on not allowed topics')
+  }
+  
   res = await authorizeSub(client, allowed)
   t.same(res, allowed, 'should authorize sub on allowed topics')
 
