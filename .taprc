@@ -7,5 +7,5 @@ browser: false
 coverage-report: html
 lines: 85
 statements: 80
-functions: 60
-branches: 60
+functions: 55
+branches: 55
