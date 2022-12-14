@@ -5,7 +5,7 @@ no-flow: true
 coverage: true
 browser: false
 coverage-report: html
-lines: 90
+lines: 85
 statements: 80
 functions: 60
 branches: 60
