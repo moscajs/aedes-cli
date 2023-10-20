@@ -15,8 +15,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: docker/setup-buildx-action@v1.3.0
-      - uses: docker/setup-qemu-action@v2.0.0
+      - uses: docker/setup-buildx-action@v2
+      - uses: docker/setup-qemu-action@v2
       
       - name: Login to dockerhub
         uses: docker/login-action@v2
@@ -32,7 +32,7 @@ jobs:
             type=semver,pattern={{version}}
             type=sha
             type=ref,event=branch
-          label-custom: |
+          labels: |
             org.opencontainers.image.vendor=moscajs
             org.opencontainers.image.documentation=https://github.com/moscajs/aedes-cli
             org.opencontainers.image.authors=Daniel Lando <daniel.sorridi@gmail.com>
