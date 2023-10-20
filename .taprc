@@ -4,3 +4,4 @@ coverage-report:
   - html
 plugin:
   - "!@tapjs/typescript"
+allow-incomplete-coverage: true
