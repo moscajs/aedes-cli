@@ -18,7 +18,7 @@ console.log('keyFile', keyFile)
 require('leaked-handles')
 
 test('start without args', async function (t) {
-  t.plan(7)
+  t.plan(6)
   const setup = await start()
 
   t.teardown(stop.bind(t, setup))
