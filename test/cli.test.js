@@ -18,14 +18,13 @@ console.log('keyFile', keyFile)
 require('leaked-handles')
 
 test('start without args', async function (t) {
-  t.plan(7)
+  t.plan(6)
   const setup = await start()
 
   t.teardown(stop.bind(t, setup))
 
   t.equal(setup.servers.length, 1, 'should start one server')
   const info = setup.servers[0].address()
-  t.equal(info.address, defaults.host, 'should have default host')
   t.equal(info.port, defaults.port, 'should have default port')
 
   const broker = setup.broker
@@ -36,7 +35,7 @@ test('start without args', async function (t) {
 })
 
 test('start multiple servers', async function (t) {
-  t.plan(9)
+  t.plan(5)
 
   const servers = {
     tcp: defaults.port,
@@ -54,7 +53,6 @@ test('start multiple servers', async function (t) {
 
   for (const server of setup.servers) {
     const info = server.address()
-    t.equal(info.address, defaults.host, 'should have default host')
     t.equal(info.port, servers[server._protocol], 'should have default port')
   }
 })

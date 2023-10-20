@@ -106,3 +106,5 @@ dist
 .vscode
 
 credentials.json
+
+.tap

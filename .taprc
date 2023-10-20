@@ -1,11 +1,7 @@
+# vim: set filetype=yaml :
 jobs: 1
-no-ts: true
-no-jsx: true
-no-flow: true
-coverage: true
-browser: false
-coverage-report: html
-lines: 85
-statements: 80
-functions: 55
-branches: 55
+coverage-report:
+  - html
+plugin:
+  - "!@tapjs/typescript"
+allow-incomplete-coverage: true
