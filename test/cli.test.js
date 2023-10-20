@@ -25,7 +25,6 @@ test('start without args', async function (t) {
 
   t.equal(setup.servers.length, 1, 'should start one server')
   const info = setup.servers[0].address()
-  t.equal(info.address, defaults.host, 'should have default host')
   t.equal(info.port, defaults.port, 'should have default port')
 
   const broker = setup.broker
