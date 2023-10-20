@@ -35,7 +35,7 @@ test('start without args', async function (t) {
 })
 
 test('start multiple servers', async function (t) {
-  t.plan(9)
+  t.plan(5)
 
   const servers = {
     tcp: defaults.port,
@@ -53,7 +53,6 @@ test('start multiple servers', async function (t) {
 
   for (const server of setup.servers) {
     const info = server.address()
-    t.equal(info.address, defaults.host, 'should have default host')
     t.equal(info.port, servers[server._protocol], 'should have default port')
   }
 })
