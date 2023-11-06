@@ -43,7 +43,7 @@ jobs:
         timeout-minutes: 30
         uses: docker/build-push-action@v3
         with:
-          platforms: linux/arm64,linux/amd64,linux/arm/v6,linux/arm/v7
+          platforms: linux/arm64,linux/amd64,linux/arm/v7
           context: .
           file: docker/Dockerfile
           cache-from: type=gha
