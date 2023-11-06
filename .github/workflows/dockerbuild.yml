@@ -25,7 +25,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - id: docker_meta
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@v5
         with:
           images: moscajs/aedes
           tags: |
@@ -41,13 +41,13 @@ jobs:
      
       - name: build+push
         timeout-minutes: 30
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v5
         with:
           platforms: linux/arm64,linux/amd64,linux/arm/v6,linux/arm/v7
           context: .
           file: docker/Dockerfile
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          # cache-from: type=gha
+          # cache-to: type=gha,mode=max
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.docker_meta.outputs.tags }}
           labels: ${{ steps.docker_meta.outputs.labels }}
