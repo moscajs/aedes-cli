@@ -9,7 +9,9 @@ COPY . .
 # set production env, npm install will not install devDependencies
 ENV NODE_ENV=production
 
-RUN npm install --omit=dev
+# if node_modules does not exist, run it, otherwise skip
+RUN test -d node_modules || npm install --omit=dev
+
 RUN chmod 755 /usr/src/app/bin/aedes
 
 EXPOSE 1883 3000 8883 4000

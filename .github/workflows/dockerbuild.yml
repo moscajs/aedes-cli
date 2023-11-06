@@ -38,6 +38,10 @@ jobs:
             org.opencontainers.image.authors=Daniel Lando <daniel.sorridi@gmail.com>
             org.opencontainers.image.url=https://github.com/moscajs/aedes-cli
             maintainer=robertsLando
+      
+      - name: Install dependencies (to skip install in docker build)
+        run: |
+          npm install --omit=dev
      
       - name: build+push
         timeout-minutes: 30
@@ -46,8 +50,8 @@ jobs:
           platforms: linux/arm64,linux/amd64,linux/arm/v6,linux/arm/v7
           context: .
           file: docker/Dockerfile
-          # cache-from: type=gha
-          # cache-to: type=gha,mode=max
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.docker_meta.outputs.tags }}
           labels: ${{ steps.docker_meta.outputs.labels }}

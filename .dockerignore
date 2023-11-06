@@ -6,4 +6,3 @@ docs
 .nyc_output
 .coverage
 test
-node_modules
