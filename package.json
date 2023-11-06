@@ -2,7 +2,7 @@
   "name": "aedes-cli",
   "version": "0.7.0",
   "description": "Aedes MQTT broker from cli",
-  "main": "index.js",
+  "main": "./lib/cli.js",
   "bin": {
     "aedes": "./bin/aedes"
   },

@@ -15,6 +15,7 @@
 - [aedes-cli](#aedes-cli)
   - [Install](#install)
   - [Usage](#usage)
+  - [Programmatically](#programmatically)
   - [Docker](#docker)
   - [Authorization](#authorization)
   - [Persistence and Emitters](#persistence-and-emitters)
@@ -143,6 +144,18 @@ module.exports = {
   noPretty: false
 }
 
+```
+
+## Programmatically
+
+You can also use `aedes-cli` programmatically:
+
+```js
+const { start, adduser, rmuser } = require('aedes-cli')
+
+start({
+  protos: ['tcp'],
+})
 ```
 
 ## Docker
