@@ -1,7 +1,7 @@
 # vim: set filetype=yaml :
 jobs: 1
 coverage-report:
-  - html
+  - "text"
 plugin:
   - "!@tapjs/typescript"
 allow-incomplete-coverage: true
