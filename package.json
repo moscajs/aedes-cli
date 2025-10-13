@@ -11,8 +11,7 @@
     "lint:standard": "standard --verbose | snazzy",
     "docker:build": "docker build -t moscajs/aedes:latest -f docker/Dockerfile .",
     "test:ci": "tap test/*.test.js",
-    "release": "read -p 'GITHUB_TOKEN: ' GITHUB_TOKEN && export GITHUB_TOKEN=$GITHUB_TOKEN && release-it --disable-metrics",
-    "debug": "node bin/aedes --config ./data/config.js --credentials /data/credentials.json"
+    "release": "read -p 'GITHUB_TOKEN: ' GITHUB_TOKEN && export GITHUB_TOKEN=$GITHUB_TOKEN && release-it --disable-metrics"
   },
   "release-it": {
     "github": {
