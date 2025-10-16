@@ -13,22 +13,6 @@
     "test:ci": "tap test/*.test.js",
     "release": "read -p 'GITHUB_TOKEN: ' GITHUB_TOKEN && export GITHUB_TOKEN=$GITHUB_TOKEN && release-it --disable-metrics"
   },
-  "release-it": {
-    "github": {
-      "release": true
-    },
-    "git": {
-      "tagName": "v${version}"
-    },
-    "hooks": {
-      "before:init": [
-        "npm run test"
-      ]
-    },
-    "npm": {
-      "publish": true
-    }
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/moscajs/aedes-cli.git"
