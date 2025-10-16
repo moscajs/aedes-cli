@@ -48,7 +48,7 @@
   "homepage": "https://github.com/moscajs/aedes-cli#readme",
   "devDependencies": {
     "leaked-handles": "^5.2.0",
-    "release-it": "^16.2.1",
+    "release-it": "^19.0.5",
     "snazzy": "^9.0.0",
     "standard": "^17.1.0",
     "tap": "^18.5.2"
@@ -60,9 +60,9 @@
     "aedes-stats": "^4.0.0",
     "minimatch": "^9.0.3",
     "mqemitter-mongodb": "^8.1.0",
-    "mqemitter-redis": "^5.0.0",
-    "pino": "^8.16.0",
-    "pino-pretty": "^10.2.3",
+    "mqemitter-redis": "^7.2.0",
+    "pino": "^10.0.0",
+    "pino-pretty": "^13.1.2",
     "ws": "^8.14.2",
     "yargs": "^17.7.2"
   }
