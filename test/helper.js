@@ -29,7 +29,11 @@ async function stop (setup) {
   await close(setup.broker)
 
   if (setup.persistence && typeof setup.persistence.destroy === 'function') {
-    setup.persistence.destroy()
+    await setup.persistence.destroy()
+  }
+
+  if (setup.mq && typeof setup.mq.close === 'function') {
+    await new Promise((resolve) => setup.mq.close(resolve))
   }
 }
 

@@ -22,9 +22,9 @@ jobs:
         db: [mongodb, redis]
         include:
           - db: mongodb
-            image: mvertes/alpine-mongo
+            image: mongo:7
             options: >-
-              --health-cmd mongo
+              --health-cmd "mongosh --eval 'db.runCommand({ ping: 1 })'"
               --health-interval 10s
               --health-timeout 5s
               --health-retries 10
