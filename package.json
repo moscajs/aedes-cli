@@ -11,7 +11,7 @@
     "lint": "eslint .",
     "docker:db": "docker compose -f docker-compose-test.yml up -d",
     "docker:build": "docker build -t moscajs/aedes:latest -f docker/Dockerfile .",
-    "test:ci": "node --test --test-force-exit test/*.test.js",
+    "test:ci": "node --test test/*.test.js",
     "release": "read -p 'GITHUB_TOKEN: ' GITHUB_TOKEN && export GITHUB_TOKEN=$GITHUB_TOKEN && release-it --disable-metrics"
   },
   "repository": {
