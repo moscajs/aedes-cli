@@ -22,12 +22,14 @@ function close (server) {
 }
 
 async function stop (setup) {
-  await close(setup.broker)
-
-  setup.broker.persistence.destroy()
-
   for (const server of setup.servers) {
     await close(server)
+  }
+
+  await close(setup.broker)
+
+  if (setup.persistence && typeof setup.persistence.destroy === 'function') {
+    setup.persistence.destroy()
   }
 }
 
