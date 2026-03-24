@@ -26,15 +26,8 @@ async function stop (setup) {
     await close(server)
   }
 
+  // broker.close() also closes the mq emitter
   await close(setup.broker)
-
-  if (setup.persistence && typeof setup.persistence.destroy === 'function') {
-    await setup.persistence.destroy()
-  }
-
-  if (setup.mq && typeof setup.mq.close === 'function') {
-    await new Promise((resolve) => setup.mq.close(resolve))
-  }
 }
 
 module.exports = {
