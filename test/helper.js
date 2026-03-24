@@ -49,11 +49,7 @@ async function stop (setup) {
   await close(setup.broker)
 
   if (setup.persistence && typeof setup.persistence.destroy === 'function') {
-    try {
-      await setup.persistence.destroy()
-    } catch {
-      // ignore errors during persistence teardown
-    }
+    await setup.persistence.destroy()
   }
 }
 
