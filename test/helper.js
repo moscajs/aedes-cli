@@ -21,13 +21,39 @@ function close (server) {
   })
 }
 
+// wait for mqemitter-mongodb in-flight bulkWrite to complete
+// workaround for https://github.com/mcollina/mqemitter-mongodb/pull/65
+function waitForMqDrain (mq) {
+  return new Promise((resolve) => {
+    function check () {
+      if (mq._executingBulk) {
+        setTimeout(check, 10)
+      } else {
+        resolve()
+      }
+    }
+    check()
+  })
+}
+
 async function stop (setup) {
-  await close(setup.broker)
-
-  setup.broker.persistence.destroy()
-
   for (const server of setup.servers) {
     await close(server)
+  }
+
+  if (setup.mq && setup.mq._executingBulk !== undefined) {
+    await waitForMqDrain(setup.mq)
+  }
+
+  // broker.close() also closes the mq emitter
+  await close(setup.broker)
+
+  if (setup.persistence && typeof setup.persistence.destroy === 'function') {
+    try {
+      await setup.persistence.destroy()
+    } catch {
+      // ignore errors during persistence teardown
+    }
   }
 }
 
