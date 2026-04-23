@@ -35,7 +35,7 @@
     "eslint": "^9.27.0",
     "leaked-handles": "^5.2.0",
     "neostandard": "^0.13.0",
-    "release-it": "^19.2.4"
+    "release-it": "^20.0.0"
   },
   "dependencies": {
     "aedes": "^1.0.1",
